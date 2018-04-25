@@ -1,0 +1,21 @@
+---
+- name: install common software
+  hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - common
+
+- name: install webservers
+  hosts: webservers
+  become: yes
+  become_method: sudo
+  roles:
+    - webserver
+  
+- name: install loadbalancer
+  hosts: loadbalancers
+  become: yes
+  become_method: sudo
+  roles:
+    - lb

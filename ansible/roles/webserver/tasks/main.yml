@@ -1,0 +1,23 @@
+---
+- name: install apache
+  apt: name=apache2 state=present
+
+- name: install mod PHP
+  apt: name=libapache2-mod-php state=present
+
+- name: add index.php to see SERVER_IP
+  copy:
+    src: index.php
+    dest: /var/www/html/index.php
+    owner: root
+    group: root
+    mode: 0755
+  notify: restart apache
+
+- name: delete index.html
+  file:
+    path: /var/www/html/index.html
+    state: absent
+
+- name: apache2 service state
+  service: name=apache2 state=started enabled=yes

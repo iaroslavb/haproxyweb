@@ -1,0 +1,25 @@
+---
+webserver_1:
+  name:     "webserver_1"
+  cpus:     1
+  memory:   1024
+  gui:      false
+  box:      "ubuntu/xenial64"
+  ip:       192.168.88.200
+
+webserver_2:
+  name:     "webserver_2"
+  cpus:     1
+  memory:   1024
+  gui:      false
+  box:      "ubuntu/xenial64"
+  ip:       192.168.88.201
+
+loadbalancer:
+  name:     "loadbalancer"
+  cpus:     1
+  memory:   768
+  gui:      false
+  box:      "ubuntu/xenial64"
+  ip:       192.168.88.202
+

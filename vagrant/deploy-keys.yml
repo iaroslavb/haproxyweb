@@ -1,0 +1,32 @@
+---
+#
+# add user `ansible` and public ssh keys
+#
+
+- name: provision SSH key for ansible
+  hosts: all
+  sudo: True
+  tasks:
+    - name: Create `ansible` user
+      user:
+        name="ansible"
+        home="/home/ansible"
+        shell="/bin/bash"
+        append="true"
+        group="admin"
+        comment="ansible"
+
+    - name: Set up authorized_key
+      authorized_key:
+        key="{{lookup('file', '~/.ssh/id_rsa.pub')}}"
+        user="ansible"
+        manage_dir=no
+
+    - name: allow sudo without password for ansible user
+      copy:
+            src: ansible
+            dest: /etc/sudoers.d/ansible
+            owner: root
+            group: root
+            mode: 0644
+
